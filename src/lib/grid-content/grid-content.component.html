@@ -1,0 +1,7 @@
+<ng-container *ngFor="let d of data.data;let i = index;">
+  <tr>
+    <td #tmp *ngFor="let c of cols">
+      {{genUI(tmp, d, c)}}
+    </td>
+  </tr>
+</ng-container>

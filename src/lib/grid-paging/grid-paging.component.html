@@ -1,0 +1,16 @@
+<nav aria-label="Page navigation example">
+  <ul class="page-item" class="pagination">
+    <li class="page-item {{_currentIndex == 1 ? 'disabled' : ''}}">
+      <a (click)="previous()" class="page-link" href="javascript:void(0)">Previous</a>
+    </li>
+    <li class="page-item {{(i+1) == _currentIndex ? 'active' : ''}}" *ngFor="let p of _pageItems; let i = index;">
+      <a class="page-link" (click)="navigate(p)" href="javascript:void(0)">{{p.text}}</a>
+    </li>
+    <li class="page-item {{_currentIndex == _pageNum ? 'disabled' : ''}}">
+      <a class="page-link" (click)="next()" href="javascript:void(0)">Next</a>
+    </li>
+    <li class="page-item {{_currentIndex == _pageNum ? 'disabled' : ''}}">
+        <a class="page-link" (click)="last()" href="javascript:void(0)">Last</a>
+      </li>
+  </ul>
+</nav>

@@ -1,0 +1,22 @@
+th {
+    cursor: pointer;
+}
+
+.sort {
+    &::before {
+        content: " ";
+        display: block;
+        float: left;
+        width: 0;
+        height: 0;
+        border-style: solid;
+    }
+    &.asc::before {
+        border-width: 0 5px 5px 5px;
+        border-color: transparent transparent #009a67 transparent;
+    }
+    &.desc::before {
+        border-width: 5px 5px 0 5px;
+        border-color: #009a67 transparent transparent transparent;
+    }
+}

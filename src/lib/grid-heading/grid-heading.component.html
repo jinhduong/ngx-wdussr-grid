@@ -1,0 +1,3 @@
+<ng-container *ngFor="let c of cols;let i = index;">
+  <th (click)="sort(c)" [ngClass]="classRender(c)" >{{c.title}}</th>
+</ng-container>
