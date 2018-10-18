@@ -1,9 +1,11 @@
-<table class="table table-striped">
-    <thead>
-        <tr (sorter)="doSorting($event)" ng-grid-heading [cols]="cols"></tr>
-        <tr ng-grid-filtering [filter]="_filter" [cols]="cols" (filterer)="doFiltering($event)" [options]="options"></tr>
-    </thead>
-    <tbody [data]="_data" [cols]="cols" ng-grid-content class="body"></tbody>
-</table>
-<ng-grid-paging [currentIndex]="_initPageIndex" (nav)="navigate($event)" [data]="_data"></ng-grid-paging>
-<button class="btn btn-primary btn-refresh" *ngIf="options.refresh" (click)="refresh()">Refresh</button>
+<div class="table-responsive ngx-wdussr-grid">
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr class="header" [filter]="_filter" (sorter)="doSorting($event)" ng-grid-heading [cols]="cols"></tr>
+            <tr ng-grid-filtering [filter]="_filter" [cols]="cols" (filterer)="doFiltering($event)" [options]="options"></tr>
+        </thead>
+        <tbody [data]="_data" [cols]="cols" ng-grid-content class="body"></tbody>
+    </table>
+    <ng-grid-paging [currentIndex]="_initPageIndex" (nav)="navigate($event)" [data]="_data"></ng-grid-paging>
+    <button class="btn btn-default btn-refresh btn-sm" *ngIf="options.refresh" (click)="refresh()">Refresh</button>
+</div>

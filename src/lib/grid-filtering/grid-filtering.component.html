@@ -1,10 +1,12 @@
 <td *ngFor="let c of cols">
-  <ng-container *ngIf="c.filteringSelect;else normalFilter">
-    <select class="form-control" (change)="onSelectFiltering($event,c)" [value]="setDefault(c)">
-      <option *ngFor="let o of c.filteringSelect" [value]="o.val">{{o.text}}</option>
-    </select>
+  <ng-container *ngIf="c.filtering !== false">
+    <ng-container *ngIf="c.filteringSelect;else normalFilter">
+      <select class="form-control" (change)="onSelectFiltering($event,c)" [value]="setDefault(c)">
+        <option *ngFor="let o of c.filteringSelect" [value]="o.val">{{o.text}}</option>
+      </select>
+    </ng-container>
+    <ng-template #normalFilter>
+      <input class="form-control" [value]="setDefault(c)" (keyup)="onFiltering($event, c)" type="text">
+    </ng-template>
   </ng-container>
-  <ng-template #normalFilter>
-    <input class="form-control" [value]="setDefault(c)" (keyup)="onFiltering($event, c)" type="text">
-  </ng-template>
 </td>

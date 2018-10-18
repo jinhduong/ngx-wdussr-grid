@@ -7,4 +7,5 @@ export interface GridOptions {
     paging?: boolean;
     delay?: number;
     refresh?: boolean;
+    enableNumber?: boolean;
 }

@@ -2,13 +2,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Col } from '../core/Col';
 import { GridOptions } from '../core/Options';
 import { Subject } from 'rxjs';
-import { debounceTime } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { GridFilter } from '../core';
 
 @Component({
   selector: '[ng-grid-filtering]',
   templateUrl: './grid-filtering.component.html',
-  styleUrls: ['./grid-filtering.component.css']
+  styleUrls: ['./grid-filtering.component.scss']
 })
 export class GridFilteringComponent implements OnInit {
 
@@ -23,7 +23,8 @@ export class GridFilteringComponent implements OnInit {
 
   ngOnInit() {
     this.subject.pipe(
-      debounceTime(this.options.delay)
+      debounceTime(this.options.delay),
+      distinctUntilChanged(),
     ).subscribe(filterData => this.handleFilter(filterData));
   }
 

@@ -1,4 +1,4 @@
-export * from './Col';
-export * from './Filter';
-export * from './Result';
-export * from './Options';
+export { Col } from './Col';
+export { GridFilter } from './Filter';
+export { GridResult } from './Result';
+export { GridOptions } from './Options';

@@ -18,7 +18,8 @@ export class GridComponent<T> implements OnInit {
     filtering: false,
     paging: true,
     delay: 300,
-    refresh: true
+    refresh: true,
+    enableNumber: false
   }
   _api: (filter: GridFilter) => Promise<GridResult<T>>;
   _promise: Promise<GridResult<T>>;
@@ -117,11 +118,26 @@ export class GridComponent<T> implements OnInit {
    * 2b. If hasn't filter data => Ignore and use default filter data
    */
   private _callApi() {
+    console.log('api call');
     let queries: GridFilter = getQueries();
     if (queries) this._filter = queries;
-    this._promise = this._api(this._filter);
+
+    const cloneFilter: any = JSON.parse(JSON.stringify(this._filter));
+    cloneFilter.search = JSON.stringify(cloneFilter.search);
+
+    this._promise = this._api(cloneFilter);
     this._promise.then(rs => {
-      this._data = rs;
+      if (this.options.enableNumber) this._data = this.transformNumbering(rs);
+      else this._data = rs;
     });
+  }
+
+  private transformNumbering(rs: GridResult<T>) {
+    let num = ((this._filter.pageIndex - 1) * this._filter.pageSize) + 1;
+    rs.data = rs.data.map(x => {
+      x.no = num++;
+      return x;
+    });
+    return rs;
   }
 }
