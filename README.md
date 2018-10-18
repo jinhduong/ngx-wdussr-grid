@@ -22,7 +22,7 @@ Route-able angular grid
 
 ``` ts
 import { Component, OnInit } from '@angular/core';
-import { GridFilter, GridOptions, Col, GridResult } from 'projects/ngx-wdussr-grid/src/lib/core';
+import { GridFilter, GridOptions, Col, GridResult } from 'ngx-wdussr-grid';
 
 @Component({
   selector: 'test-component',
